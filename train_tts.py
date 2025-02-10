@@ -19,10 +19,18 @@ dataset_config = BaseDatasetConfig(
 audio_config = VitsAudioConfig(
     sample_rate=22050, win_length=1024, hop_length=256, num_mels=80, mel_fmin=0, mel_fmax=None
 )
-# char_config = CharactersConfig()
 
 config = VitsConfig(
-    # characters=char_config,
+    characters=CharactersConfig(
+        characters_class="TTS.tts.models.vits.VitsCharacters",
+        pad="<PAD>",
+        eos="<EOS>",
+        bos="<BOS>",
+        blank="<BLNK>",
+        characters="!¡'(),-.:;¿?abcdefghijklmnopqrstuvwxyzµßàáâäåæçèéêëìíîïñòóôöùúûüąćęłńœśşźżƒабвгдежзийклмнопрстуфхцчшщъыьэюяёєіїґӧ «°±µ»$%&‘’‚“`”„ءآبپتثجچحخدڈرزسشصضطظعغفقکگگڑلھمںوؤہھی", 
+        punctuations="!¡'(),-.:;¿? ",  # Keep the same punctuation marks
+        phonemes=None,  # Phoneme list can be generated or added here if necessary
+    )
     audio=audio_config,
     run_name="vits_urdu",
     batch_size=16,
